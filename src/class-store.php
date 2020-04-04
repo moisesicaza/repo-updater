@@ -25,7 +25,7 @@ class Store {
      *      'update' => false,
      *      'version' => '1.0.0',
      *      'stylesheet' => 'fake-theme',
-     *      'path' => 'C:\\Users\\Moises Icaza\\Desktop\\projects\\wp-test/wp-content/themes/fake-theme',
+     *      'path' => '/var/www/wp-test/wp-content/themes/fake-theme',
      *   ),
      * )
      *
