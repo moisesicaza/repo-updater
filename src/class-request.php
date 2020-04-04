@@ -14,7 +14,7 @@ class Request {
      * @param array $credentials Application credentials.
      * @example
      *
-     *  $credentials = [
+     * $credentials = [
      *    'username'=> get_option('ru_github_username'),
      *    'password' => get_option('ru_github_password'),
      *    'access_token'=> get_option('ru_github_access_token'),
@@ -75,11 +75,11 @@ class Request {
      */
     public static function send_request(array $credentials, string $resource, string $authentication_type) {
         try {
-            $headers = Request::get_headers($authentication_type, $credentials);
-            return Request::request_handler($resource, $headers);
+            $headers = Request::get_headers( $authentication_type, $credentials );
+            return Request::request_handler( $resource, $headers );
 
         } catch (Exception $e) {
-            printf('Error: %s', $e->getMessage());
+            printf( 'Error: %s', $e->getMessage() );
         }
     }
 }
