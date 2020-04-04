@@ -1,5 +1,5 @@
 <?php
-namespace rp;
+namespace RUpdater;
 
 class Github {
     public function __construct()
