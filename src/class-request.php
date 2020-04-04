@@ -22,7 +22,7 @@ class Request {
      *
      * @return array
      */
-    private static function getHeaders(string $authentication_type, array $credentials) {
+    private static function get_headers(string $authentication_type, array $credentials) {
         $headers      = [ 'Accept' => 'application/json' ];
         $username     = $credentials['username'] ?? false;
         $password     = $credentials['password'] ?? false;
@@ -53,7 +53,7 @@ class Request {
      * @return array
      * @throws Exception
      */
-    protected static function requestHandler(string $resource, array $headers) {
+    protected static function request_handler(string $resource, array $headers) {
         $response = wp_remote_get( esc_url_raw( $resource ), [
             'headers' => $headers,
         ]);
@@ -73,10 +73,10 @@ class Request {
      * @param string $authentication_type Authentication type name (basic, token).
      * @return array
      */
-    public static function sendRequest(array $credentials, string $resource, string $authentication_type) {
+    public static function send_request(array $credentials, string $resource, string $authentication_type) {
         try {
-            $headers = Request::getHeaders($authentication_type, $credentials);
-            return Request::requestHandler($resource, $headers);
+            $headers = Request::get_headers($authentication_type, $credentials);
+            return Request::request_handler($resource, $headers);
 
         } catch (Exception $e) {
             printf('Error: %s', $e->getMessage());
