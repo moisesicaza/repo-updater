@@ -14,4 +14,38 @@ class Store {
             'access_token' => get_option( 'ru_github_access_token' ),
         ];
     }
+
+    /**
+     * Gets the list of available themes in the WordPress installation.
+     *
+     * @example
+     * array (
+     *  'fake-theme' => array (
+     *      'name' => 'Fake Theme',
+     *      'update' => false,
+     *      'version' => '1.0.0',
+     *      'stylesheet' => 'fake-theme',
+     *      'path' => 'C:\\Users\\Moises Icaza\\Desktop\\projects\\wp-test/wp-content/themes/fake-theme',
+     *   ),
+     * )
+     *
+     * @return array|bool
+     */
+    public static function get_available_themes() {
+        $themes = wp_get_themes();
+
+        if (is_array($themes) && sizeof($themes) > 0) {
+            return array_map( function($theme) {
+                return [
+                    'name' => $theme->get('Name'),
+                    'update' => $theme->get('updated'),
+                    'version' => $theme->get('Version'),
+                    'stylesheet' => $theme->get_stylesheet(),
+                    'path' => $theme->get_stylesheet_directory(),
+                ];
+            }, $themes);
+        } else {
+            return false;
+        }
+    }
 }
