@@ -76,14 +76,14 @@ class SettingsPage
 
         add_settings_section(
             'setting_section',
-            'Add new repository',
+            __( 'Sync new repository', R_UPDATER_CONTEXT ),
             null,
             SettingsPage::PAGE_NAME
         );
 
         add_settings_field(
             'repositories',
-            'Available repositories',
+            __( 'Available repositories', R_UPDATER_CONTEXT ),
             array( $this, 'repositories_callback' ),
             SettingsPage::PAGE_NAME,
             'setting_section'
@@ -91,7 +91,7 @@ class SettingsPage
 
         add_settings_field(
             'themes',
-            'Available themes',
+            __( 'Available themes', R_UPDATER_CONTEXT ),
             array( $this, 'themes_callback' ),
             SettingsPage::PAGE_NAME,
             'setting_section'
