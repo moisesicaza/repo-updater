@@ -2,6 +2,11 @@
 namespace RUpdater;
 
 class Store {
+    const REPOSITORIES = [
+        'github' => 'Github',
+        'gitlab' => 'Gitlab'
+    ];
+
     /**
      * Returns stored credentials from the Github repository.
      *
@@ -34,18 +39,16 @@ class Store {
     public static function get_available_themes() {
         $themes = wp_get_themes();
 
-        if (is_array($themes) && sizeof($themes) > 0) {
-            return array_map( function($theme) {
-                return [
-                    'name' => $theme->get('Name'),
-                    'update' => $theme->get('updated'),
-                    'version' => $theme->get('Version'),
-                    'stylesheet' => $theme->get_stylesheet(),
-                    'path' => $theme->get_stylesheet_directory(),
-                ];
-            }, $themes);
-        } else {
-            return false;
-        }
+        if( !is_array( $themes ) ) return [];
+
+        return array_map( function( $theme ) {
+            return [
+                'name' => $theme->get('Name'),
+                'update' => $theme->get('updated'),
+                'version' => $theme->get('Version'),
+                'stylesheet' => $theme->get_stylesheet(),
+                'path' => $theme->get_stylesheet_directory(),
+            ];
+        }, $themes );
     }
 }
