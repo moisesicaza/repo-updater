@@ -3,8 +3,6 @@ namespace RUpdater;
 
 class SettingsPage
 {
-    const FIELD_PREFIX = '_r_updater_';
-
     private $options;
     private $available_themes;
     private $available_repositories;
@@ -49,14 +47,14 @@ class SettingsPage
      * Handles the setting form
      */
     public function create_admin_page() {
-        $this->options = get_option( 'settings_group' );
+        $this->options = get_option( '_r_updater_settings_group' );
         ?>
         <div class="wrap">
             <h1>Repo Updater Settings</h1>
             <?php settings_errors(); ?>
             <form method="post" action="options.php">
                 <?php
-                settings_fields( 'settings_group' );
+                settings_fields( '_r_updater_settings_group' );
                 do_settings_sections( 'repo-updater' );
                 submit_button();
                 ?>
@@ -70,8 +68,8 @@ class SettingsPage
      */
     public function page_init() {
         register_setting(
-            'settings_group',
-            'settings_group',
+            '_r_updater_settings_group',
+            '_r_updater_settings_group',
             array( $this, 'sanitize' )
         );
 
@@ -83,7 +81,7 @@ class SettingsPage
         );
 
         add_settings_field(
-            SettingsPage::FIELD_PREFIX .'themes',
+            'themes',
             __( 'Available themes', R_UPDATER_CONTEXT ),
             array( $this, 'themes_callback' ),
             'repo-updater',
@@ -91,7 +89,7 @@ class SettingsPage
         );
 
         add_settings_field(
-            SettingsPage::FIELD_PREFIX .'repositories',
+            'repositories',
             __( 'Available repositories', R_UPDATER_CONTEXT ),
             array( $this, 'repositories_callback' ),
             'repo-updater',
@@ -99,7 +97,7 @@ class SettingsPage
         );
 
         add_settings_field(
-            SettingsPage::FIELD_PREFIX .'username',
+            'username',
             __( 'Username', R_UPDATER_CONTEXT ),
             array( $this, 'username_callback' ),
             'repo-updater',
@@ -107,7 +105,7 @@ class SettingsPage
         );
 
         add_settings_field(
-            SettingsPage::FIELD_PREFIX .'password',
+            'password',
             __( 'Password', R_UPDATER_CONTEXT ),
             array( $this, 'password_callback' ),
             'repo-updater',
@@ -115,7 +113,7 @@ class SettingsPage
         );
 
         add_settings_field(
-            SettingsPage::FIELD_PREFIX .'token',
+            'token',
             __( 'Token', R_UPDATER_CONTEXT ),
             array( $this, 'token_callback' ),
             'repo-updater',
