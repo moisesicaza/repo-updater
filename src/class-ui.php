@@ -47,14 +47,14 @@ class SettingsPage
      * Handles the setting form
      */
     public function create_admin_page() {
-        $this->options = get_option( '_r_updater_settings_group' );
+        $this->options = get_option( '_r_updater' );
         ?>
         <div class="wrap">
             <h1>Repo Updater Settings</h1>
             <?php settings_errors(); ?>
             <form method="post" action="options.php">
                 <?php
-                settings_fields( '_r_updater_settings_group' );
+                settings_fields( '_r_updater' );
                 do_settings_sections( 'repo-updater' );
                 submit_button();
                 ?>
@@ -68,8 +68,8 @@ class SettingsPage
      */
     public function page_init() {
         register_setting(
-            '_r_updater_settings_group',
-            '_r_updater_settings_group',
+            '_r_updater',
+            '_r_updater',
             array( $this, 'sanitize' )
         );
 
@@ -152,28 +152,28 @@ class SettingsPage
      * Renders the input field for the repository username
      */
     public function username_callback() {
-        Input::text( 'username', 'settings_group[username]', $this->options['username'] );
+        Input::text( 'username', '_r_updater[username]', $this->options['username'] );
     }
 
     /**
      * Renders the input field for the repository password
      */
     public function password_callback() {
-        Input::password( 'password', 'settings_group[password]', $this->options['password'] );
+        Input::password( 'password', '_r_updater[password]', $this->options['password'] );
     }
 
     /**
      * Renders the input field for the repository access token
      */
     public function token_callback() {
-        Input::text( 'token', 'settings_group[token]', $this->options['token'] );
+        Input::text( 'token', '_r_updater[token]', $this->options['token'] );
     }
 
     /**
      * Renders the list of available repositories in a selection field
      */
     public function repositories_callback() {
-        Input::select( 'repositories', 'settings_group[repositories]', $this->available_repositories, $this->options['repositories'] );
+        Input::select( 'repositories', '_r_updater[repositories]', $this->available_repositories, $this->options['repositories'] );
     }
 
     /**
@@ -181,7 +181,7 @@ class SettingsPage
      */
     public function themes_callback() {
         $themes = array_column( $this->available_themes, 'name', 'stylesheet' );
-        Input::select( 'themes', 'settings_group[themes]', $themes, $this->options['themes'] );
+        Input::select( 'themes', '_r_updater[themes]', $themes, $this->options['themes'] );
         Input::description( __( 'Be sure to select a theme that corresponds to the released in the repository', R_UPDATER_CONTEXT ) );
     }
 }
