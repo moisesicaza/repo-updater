@@ -96,6 +96,30 @@ class SettingsPage
             SettingsPage::PAGE_NAME,
             'setting_section'
         );
+
+        add_settings_field(
+            'username',
+            __( 'Username', R_UPDATER_CONTEXT ),
+            array( $this, 'username_callback' ),
+            SettingsPage::PAGE_NAME,
+            'setting_section'
+        );
+
+        add_settings_field(
+            'password',
+            __( 'Password', R_UPDATER_CONTEXT ),
+            array( $this, 'password_callback' ),
+            SettingsPage::PAGE_NAME,
+            'setting_section'
+        );
+
+        add_settings_field(
+            'token',
+            __( 'Token', R_UPDATER_CONTEXT ),
+            array( $this, 'token_callback' ),
+            SettingsPage::PAGE_NAME,
+            'setting_section'
+        );
     }
 
     /**
@@ -113,7 +137,37 @@ class SettingsPage
         if( isset( $input['themes'] ) )
             $new_input['themes'] = sanitize_text_field( $input['themes'] );
 
+        if( isset( $input['username'] ) )
+            $new_input['username'] = sanitize_text_field( $input['username'] );
+
+        if( isset( $input['password'] ) )
+            $new_input['password'] = sanitize_text_field( $input['password'] );
+
+        if( isset( $input['token'] ) )
+            $new_input['token'] = sanitize_text_field( $input['token'] );
+
         return $new_input;
+    }
+
+    /**
+     * Renders the input field for the repository username
+     */
+    public function username_callback() {
+        Input::text( 'username', 'settings_group[username]', esc_attr( $this->options['username'] ) );
+    }
+
+    /**
+     * Renders the input field for the repository password
+     */
+    public function password_callback() {
+        Input::password( 'password', 'settings_group[password]', esc_attr( $this->options['password'] ) );
+    }
+
+    /**
+     * Renders the input field for the repository access token
+     */
+    public function token_callback() {
+        Input::text( 'token', 'settings_group[token]', esc_attr( $this->options['token'] ) );
     }
 
     /**

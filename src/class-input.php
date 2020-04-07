@@ -14,6 +14,17 @@ class Input {
     }
 
     /**
+     * Renders a HTML password field
+     *
+     * @param $id string HTML id of the element
+     * @param $name string HTML name of the element
+     * @param $value string Default value of the element (optional)
+     */
+    public static function password( $id, $name, $value='' ) {
+        printf( '<input type="password" id="%s" name="%s" value="%s" />', $id, $name, $value );
+    }
+
+    /**
      * Renders a HTML text field
      *
      * @param $id string HTML id of the element
