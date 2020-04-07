@@ -4,6 +4,7 @@ namespace RUpdater;
 class SettingsPage
 {
     const PAGE_NAME = 'repo-updater';
+    const FIELD_PREFIX = '_r_updater_';
 
     private $options;
     private $available_themes;
@@ -83,7 +84,7 @@ class SettingsPage
         );
 
         add_settings_field(
-            'themes',
+            SettingsPage::FIELD_PREFIX .'themes',
             __( 'Available themes', R_UPDATER_CONTEXT ),
             array( $this, 'themes_callback' ),
             SettingsPage::PAGE_NAME,
@@ -91,7 +92,7 @@ class SettingsPage
         );
 
         add_settings_field(
-            'repositories',
+            SettingsPage::FIELD_PREFIX .'repositories',
             __( 'Available repositories', R_UPDATER_CONTEXT ),
             array( $this, 'repositories_callback' ),
             SettingsPage::PAGE_NAME,
@@ -99,7 +100,7 @@ class SettingsPage
         );
 
         add_settings_field(
-            'username',
+            SettingsPage::FIELD_PREFIX .'username',
             __( 'Username', R_UPDATER_CONTEXT ),
             array( $this, 'username_callback' ),
             SettingsPage::PAGE_NAME,
@@ -107,7 +108,7 @@ class SettingsPage
         );
 
         add_settings_field(
-            'password',
+            SettingsPage::FIELD_PREFIX .'password',
             __( 'Password', R_UPDATER_CONTEXT ),
             array( $this, 'password_callback' ),
             SettingsPage::PAGE_NAME,
@@ -115,7 +116,7 @@ class SettingsPage
         );
 
         add_settings_field(
-            'token',
+            SettingsPage::FIELD_PREFIX .'token',
             __( 'Token', R_UPDATER_CONTEXT ),
             array( $this, 'token_callback' ),
             SettingsPage::PAGE_NAME,
