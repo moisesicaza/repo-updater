@@ -53,6 +53,7 @@ class SettingsPage
         ?>
         <div class="wrap">
             <h1>Repo Updater Settings</h1>
+            <?php settings_errors(); ?>
             <form method="post" action="options.php">
                 <?php
                 settings_fields( 'settings_group' );
@@ -182,6 +183,8 @@ class SettingsPage
      */
     public function themes_callback() {
         $themes = array_column( $this->available_themes, 'name', 'stylesheet' );
+        $description = 'Be sure to select a theme that corresponds to the released in the repository';
         Input::select( 'themes', 'settings_group[themes]', $themes, esc_attr( $this->options['themes'] ) );
+        Input::description( __( $description, R_UPDATER_CONTEXT ) );
     }
 }

@@ -45,4 +45,13 @@ class Input {
         </select>
         <?php
     }
+
+    /**
+     * Displays a description text for a certain field
+     *
+     * @param $message string Description message for an input field
+     */
+    public static function description ( $message ) {
+        printf( '<p class="description">%s</p>', $message);
+    }
 }
