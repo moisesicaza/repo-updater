@@ -3,7 +3,6 @@ namespace RUpdater;
 
 class SettingsPage
 {
-    const PAGE_NAME = 'repo-updater';
     const FIELD_PREFIX = '_r_updater_';
 
     private $options;
@@ -40,7 +39,7 @@ class SettingsPage
             __( 'Repo Updater Settings', R_UPDATER_CONTEXT ),
             __( 'Repo Updater', R_UPDATER_CONTEXT ),
             'manage_options',
-            SettingsPage::PAGE_NAME,
+            'repo-updater',
             array( $this, 'create_admin_page' ),
             'dashicons-cloud'
         );
@@ -58,7 +57,7 @@ class SettingsPage
             <form method="post" action="options.php">
                 <?php
                 settings_fields( 'settings_group' );
-                do_settings_sections( SettingsPage::PAGE_NAME );
+                do_settings_sections( 'repo-updater' );
                 submit_button();
                 ?>
             </form>
@@ -80,14 +79,14 @@ class SettingsPage
             'setting_section',
             __( 'Sync new repository', R_UPDATER_CONTEXT ),
             null,
-            SettingsPage::PAGE_NAME
+            'repo-updater'
         );
 
         add_settings_field(
             SettingsPage::FIELD_PREFIX .'themes',
             __( 'Available themes', R_UPDATER_CONTEXT ),
             array( $this, 'themes_callback' ),
-            SettingsPage::PAGE_NAME,
+            'repo-updater',
             'setting_section'
         );
 
@@ -95,7 +94,7 @@ class SettingsPage
             SettingsPage::FIELD_PREFIX .'repositories',
             __( 'Available repositories', R_UPDATER_CONTEXT ),
             array( $this, 'repositories_callback' ),
-            SettingsPage::PAGE_NAME,
+            'repo-updater',
             'setting_section'
         );
 
@@ -103,7 +102,7 @@ class SettingsPage
             SettingsPage::FIELD_PREFIX .'username',
             __( 'Username', R_UPDATER_CONTEXT ),
             array( $this, 'username_callback' ),
-            SettingsPage::PAGE_NAME,
+            'repo-updater',
             'setting_section'
         );
 
@@ -111,7 +110,7 @@ class SettingsPage
             SettingsPage::FIELD_PREFIX .'password',
             __( 'Password', R_UPDATER_CONTEXT ),
             array( $this, 'password_callback' ),
-            SettingsPage::PAGE_NAME,
+            'repo-updater',
             'setting_section'
         );
 
@@ -119,7 +118,7 @@ class SettingsPage
             SettingsPage::FIELD_PREFIX .'token',
             __( 'Token', R_UPDATER_CONTEXT ),
             array( $this, 'token_callback' ),
-            SettingsPage::PAGE_NAME,
+            'repo-updater',
             'setting_section'
         );
     }
