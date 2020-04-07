@@ -83,17 +83,17 @@ class SettingsPage
         );
 
         add_settings_field(
-            'repositories',
-            __( 'Available repositories', R_UPDATER_CONTEXT ),
-            array( $this, 'repositories_callback' ),
+            'themes',
+            __( 'Available themes', R_UPDATER_CONTEXT ),
+            array( $this, 'themes_callback' ),
             SettingsPage::PAGE_NAME,
             'setting_section'
         );
 
         add_settings_field(
-            'themes',
-            __( 'Available themes', R_UPDATER_CONTEXT ),
-            array( $this, 'themes_callback' ),
+            'repositories',
+            __( 'Available repositories', R_UPDATER_CONTEXT ),
+            array( $this, 'repositories_callback' ),
             SettingsPage::PAGE_NAME,
             'setting_section'
         );
