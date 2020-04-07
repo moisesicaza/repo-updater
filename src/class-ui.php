@@ -152,28 +152,28 @@ class SettingsPage
      * Renders the input field for the repository username
      */
     public function username_callback() {
-        Input::text( 'username', 'settings_group[username]', esc_attr( $this->options['username'] ) );
+        Input::text( 'username', 'settings_group[username]', $this->options['username'] );
     }
 
     /**
      * Renders the input field for the repository password
      */
     public function password_callback() {
-        Input::password( 'password', 'settings_group[password]', esc_attr( $this->options['password'] ) );
+        Input::password( 'password', 'settings_group[password]', $this->options['password'] );
     }
 
     /**
      * Renders the input field for the repository access token
      */
     public function token_callback() {
-        Input::text( 'token', 'settings_group[token]', esc_attr( $this->options['token'] ) );
+        Input::text( 'token', 'settings_group[token]', $this->options['token'] );
     }
 
     /**
      * Renders the list of available repositories in a selection field
      */
     public function repositories_callback() {
-        Input::select( 'repositories', 'settings_group[repositories]', $this->available_repositories, esc_attr( $this->options['repositories'] ) );
+        Input::select( 'repositories', 'settings_group[repositories]', $this->available_repositories, $this->options['repositories'] );
     }
 
     /**
@@ -181,7 +181,7 @@ class SettingsPage
      */
     public function themes_callback() {
         $themes = array_column( $this->available_themes, 'name', 'stylesheet' );
-        Input::select( 'themes', 'settings_group[themes]', $themes, esc_attr( $this->options['themes'] ) );
+        Input::select( 'themes', 'settings_group[themes]', $themes, $this->options['themes'] );
         Input::description( __( 'Be sure to select a theme that corresponds to the released in the repository', R_UPDATER_CONTEXT ) );
     }
 }

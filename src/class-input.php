@@ -10,7 +10,7 @@ class Input {
      * @param $value string Default value of the element (optional)
      */
     public static function text( $id, $name, $value='' ) {
-        printf( '<input type="text" id="%s" name="%s" value="%s" />', $id, $name, $value );
+        printf( '<input type="text" id="%s" name="%s" value="%s" />', $id, $name, esc_attr( $value ) );
     }
 
     /**
@@ -21,7 +21,7 @@ class Input {
      * @param $value string Default value of the element (optional)
      */
     public static function password( $id, $name, $value='' ) {
-        printf( '<input type="password" id="%s" name="%s" value="%s" />', $id, $name, $value );
+        printf( '<input type="password" id="%s" name="%s" value="%s" />', $id, $name, esc_attr( $value ) );
     }
 
     /**
@@ -40,7 +40,7 @@ class Input {
         ?>
         <select id="<?php echo $id ?>" name="<?php echo $name ?>">
             <?php foreach( $options as $key => $value ) {
-                printf( '<option value="%s" %s>%s</option>', $key, selected( $key, $selected ), ucfirst( $value ) );
+                printf( '<option value="%s" %s>%s</option>', $key, selected( $key, $selected ), ucfirst( esc_attr( $value ) ) );
             } ?>
         </select>
         <?php
@@ -52,6 +52,6 @@ class Input {
      * @param $message string Description message for an input field
      */
     public static function description ( $message ) {
-        printf( '<p class="description">%s</p>', $message);
+        printf( '<p class="description">%s</p>', esc_attr( $message ) );
     }
 }
