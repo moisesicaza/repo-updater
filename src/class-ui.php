@@ -18,6 +18,7 @@ class SettingsPage
         // Add hooks
         add_action( 'admin_init', array( $this, 'page_init' ) );
         add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
+        add_action( 'pre_update_option__r_updater', [ $this, 'on_pre_update' ], 10, 1 );
     }
 
     /**
@@ -183,5 +184,16 @@ class SettingsPage
         $themes = array_column( $this->available_themes, 'name', 'stylesheet' );
         Input::select( 'themes', '_r_updater[themes]', $themes, $this->options['themes'] );
         Input::description( __( 'Be sure to select a theme that corresponds to the released in the repository', R_UPDATER_CONTEXT ) );
+    }
+
+    /**
+     * Method to run before saving a WordPress option in the database
+     *
+     * @param array $value Set of options and their values
+     * @return array
+     */
+    public function on_pre_update( $value ) {
+        $value['password'] = base64_encode( $value['password'] );
+        return $value;
     }
 }
