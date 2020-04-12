@@ -41,6 +41,7 @@ class Input {
         ?>
         <select id="<?php echo $id ?>" name="<?php echo $name ?>">
             <?php foreach( $options as $key => $value ) {
+                // TODO Add WordPress translation function
                 printf( '<option value="%s" %s>%s</option>', $key, selected( $key, $selected ), ucfirst( esc_attr( $value ) ) );
             } ?>
         </select>
