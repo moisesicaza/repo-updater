@@ -8,16 +8,55 @@ class Store {
     ];
 
     /**
-     * Returns stored credentials from the Github repository.
+     * Returns the plugin settings stored in the database.
      *
-     * @return array
+     * @return array|bool
      */
-    public static function get_github_credential() {
+    public static function get_settings() {
+        return get_option( '_r_updater' );
+    }
+
+    /**
+     * Returns stored repository credentials.
+     *
+     * @return bool|array
+     */
+    public static function get_credentials() {
+        $option = Store::get_settings();
+
+        if ( !$option ) return false;
+
         return [
-            'username' => get_option( 'ru_github_username' ),
-            'password' => get_option( 'ru_github_password' ),
-            'access_token' => get_option( 'ru_github_access_token' ),
+            'token' => $option['token'] ?? '',
+            'username' => $option['username'] ?? '',
+            'password' => $option['password'] ?? '',
         ];
+    }
+
+    /**
+     * Returns the name of the repository.
+     *
+     * @return bool|string
+     */
+    public static function get_repository_name() {
+        $option = Store::get_settings();
+
+        if ( !$option ) return false;
+
+        return $option['repository_name'];
+    }
+
+    /**
+     * Returns the selected repository.
+     *
+     * @return bool|string
+     */
+    public static function get_selected_repository() {
+        $option = Store::get_settings();
+
+        if ( !$option ) return false;
+
+        return $option['repository'];
     }
 
     /**
