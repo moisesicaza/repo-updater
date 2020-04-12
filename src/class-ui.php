@@ -98,6 +98,14 @@ class SettingsPage
         );
 
         add_settings_field(
+            'repository_name',
+            __( 'Repository name', R_UPDATER_CONTEXT ),
+            array( $this, 'repository_name_callback' ),
+            'repo-updater',
+            'setting_section'
+        );
+
+        add_settings_field(
             'username',
             __( 'Username', R_UPDATER_CONTEXT ),
             array( $this, 'username_callback' ),
@@ -134,6 +142,9 @@ class SettingsPage
         if( isset( $input['repository'] ) )
             $new_input['repository'] = sanitize_text_field( $input['repository'] );
 
+        if( isset( $input['repository_name'] ) )
+            $new_input['repository_name'] = sanitize_text_field( $input['repository_name'] );
+
         if( isset( $input['theme'] ) )
             $new_input['theme'] = sanitize_text_field( $input['theme'] );
 
@@ -168,6 +179,14 @@ class SettingsPage
      */
     public function token_callback() {
         Input::text( 'token', '_r_updater[token]', $this->options['token'] );
+    }
+
+    /**
+     * Renders the input field for the repository name
+     */
+    public function repository_name_callback() {
+        Input::text( 'repository_name', '_r_updater[repository_name]', $this->options['repository_name'] );
+        Input::description( __( 'Repository names usually are the following format <my username>/<my project> e.g. user01/best-project', R_UPDATER_CONTEXT ) );
     }
 
     /**
