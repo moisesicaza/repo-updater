@@ -21,7 +21,7 @@ class Input {
      * @param string $value Default value of the element (optional)
      */
     public static function password( $id, $name, $value='' ) {
-        $value = is_base64( $value ) ? base64_decode( $value ) : $value;
+        $value = isset($value) && is_base64( $value ) ? base64_decode( $value ) : $value;
         printf( '<input type="password" id="%s" name="%s" value="%s" />', $id, $name, esc_attr( $value ) );
     }
 
