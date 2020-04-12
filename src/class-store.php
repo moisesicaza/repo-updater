@@ -7,6 +7,11 @@ class Store {
         'gitlab' => 'Gitlab'
     ];
 
+    const AUTH_TYPES = [
+        'basic' => 'User and password',
+        'token' => 'By access token'
+    ];
+
     /**
      * Returns the plugin settings stored in the database.
      *
