@@ -82,7 +82,7 @@ class SettingsPage
         );
 
         add_settings_field(
-            'themes',
+            'theme',
             __( 'Available themes', R_UPDATER_CONTEXT ),
             array( $this, 'themes_callback' ),
             'repo-updater',
@@ -90,7 +90,7 @@ class SettingsPage
         );
 
         add_settings_field(
-            'repositories',
+            'repository',
             __( 'Available repositories', R_UPDATER_CONTEXT ),
             array( $this, 'repositories_callback' ),
             'repo-updater',
@@ -131,11 +131,11 @@ class SettingsPage
     public function sanitize( $input ) {
         $new_input = [];
 
-        if( isset( $input['repositories'] ) )
-            $new_input['repositories'] = sanitize_text_field( $input['repositories'] );
+        if( isset( $input['repository'] ) )
+            $new_input['repository'] = sanitize_text_field( $input['repository'] );
 
-        if( isset( $input['themes'] ) )
-            $new_input['themes'] = sanitize_text_field( $input['themes'] );
+        if( isset( $input['theme'] ) )
+            $new_input['theme'] = sanitize_text_field( $input['theme'] );
 
         if( isset( $input['username'] ) )
             $new_input['username'] = sanitize_text_field( $input['username'] );
@@ -174,7 +174,7 @@ class SettingsPage
      * Renders the list of available repositories in a selection field
      */
     public function repositories_callback() {
-        Input::select( 'repositories', '_r_updater[repositories]', $this->available_repositories, $this->options['repositories'] );
+        Input::select( 'repositories', '_r_updater[repository]', $this->available_repositories, $this->options['repository'] );
     }
 
     /**
@@ -182,7 +182,7 @@ class SettingsPage
      */
     public function themes_callback() {
         $themes = array_column( $this->available_themes, 'name', 'stylesheet' );
-        Input::select( 'themes', '_r_updater[themes]', $themes, $this->options['themes'] );
+        Input::select( 'themes', '_r_updater[theme]', $themes, $this->options['theme'] );
         Input::description( __( 'Be sure to select a theme that corresponds to the released in the repository', R_UPDATER_CONTEXT ) );
     }
 
